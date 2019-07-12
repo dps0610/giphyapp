@@ -30,7 +30,7 @@ $("#buttons-go-here").on("click", ".btn-info", function(){
             var results = response.data;
             for (let i = 0; i < results.length; i++){
                 //var ratings = $("<p>");
-                //$(ratings).text(results[i].rating);
+                //$(ratings).text("Rating: " results[i].rating);
                 var gifs = $("<img>");
                 var defaultgif = results[i].images.fixed_width_still.url;
                 $(gifs).attr("src", defaultgif);
@@ -54,8 +54,8 @@ $("#submit").on("click", function(){
     createButtons();
 })
 
-$(".gif").on("click", function(){
-    console.log("hey");
+$("#gifs-go-here").on("click", ".gif", function(){
+    //console.log("hey");
 
     var state = $(this).attr("data-state");
 
