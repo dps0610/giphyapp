@@ -29,16 +29,16 @@ $("#buttons-go-here").on("click", ".btn-info", function(){
         .then(function(response){
             var results = response.data;
             for (let i = 0; i < results.length; i++){
-                //var ratings = $("<p>");
-                //$(ratings).text("Rating: " results[i].rating);
+                var ratings = $("<p>");
+                $(ratings).text("Rating: " + results[i].rating);
                 var gifs = $("<img>");
                 var defaultgif = results[i].images.fixed_width_still.url;
                 $(gifs).attr("src", defaultgif);
                 $(gifs).attr("data-state-animated", results[i].images.fixed_width.url);
                 $(gifs).attr("data-state-still", results[i].images.fixed_width_still.url);
                 $(gifs).attr("data-state", "still")
-                $(gifs).attr("class", "float-left m-1 gif");
-                //$("#gifs-go-here").append(ratings);
+                $(gifs).attr("class",  "m-1 gif");
+                $("#gifs-go-here").append(ratings);
                 $("#gifs-go-here").append(gifs);
             }
            
