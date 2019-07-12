@@ -28,16 +28,16 @@ $("#buttons-go-here").on("click", ".btn-info", function(){
     })
         .then(function(response){
             var results = response.data;
-            console.log(results)
             for (let i = 0; i < results.length; i++){
                 //var ratings = $("<p>");
                 //$(ratings).text(results[i].rating);
                 var gifs = $("<img>");
-                var dataStateStill = results[i].images.fixed_width_still.url;
-                $(gifs).attr("src", dataStateStill);
+                var defaultgif = results[i].images.fixed_width_still.url;
+                $(gifs).attr("src", defaultgif);
                 $(gifs).attr("data-state-animated", results[i].images.fixed_width.url);
                 $(gifs).attr("data-state-still", results[i].images.fixed_width_still.url);
-                $(gifs).attr("class", "float-left m-1");
+                $(gifs).attr("data-state", "still")
+                $(gifs).attr("class", "float-left m-1 gif");
                 //$("#gifs-go-here").append(ratings);
                 $("#gifs-go-here").append(gifs);
             }
@@ -45,6 +45,25 @@ $("#buttons-go-here").on("click", ".btn-info", function(){
     });
 })
 
+$("#submit").on("click", function(){
+    $("#buttons-go-here").empty();
+    event.preventDefault();
+    var newTopic = $("#input").val().trim();
+    //console.log(newTopic);
+    topics.push(newTopic);
+    createButtons();
+})
+
 $(".gif").on("click", function(){
-    
+    console.log("hey");
+
+    var state = $(this).attr("data-state");
+
+      if (state === "still"){
+          $(this).attr("src", $(this).attr("data-state-animated"));
+          $(this).attr("data-state", "animate");
+      } else {
+          $(this).attr("src", $(this).attr("data-state-still"));
+          $(this).attr("data-state", "still");
+      }
 })
